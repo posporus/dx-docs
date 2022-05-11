@@ -7,6 +7,12 @@ export {
     render,
     renderSSR,
     Helmet,
-    Component
+    Component,
+    Link,
+    Suspense,
+    Router as NRouter
     //Router as NRouter,
- } from 'https://deno.land/x/nano_jsx@v0.0.30/mod.ts'
+} from 'https://deno.land/x/nano_jsx@v0.0.30/mod.ts'
+
+
+export { parseMarkdown } from "https://deno.land/x/markdown_wasm@1.2.2/mod.ts"

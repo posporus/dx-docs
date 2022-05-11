@@ -7,7 +7,7 @@ import {
     renderSSR
 } from './deps.ts'
 
-import {App} from './app.tsx'
+import {App} from './src/app.tsx'
 
 const ssr = renderSSR(<App />)
 const { body, head, footer } = Helmet.SSR(ssr)
