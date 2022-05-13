@@ -27,7 +27,7 @@ const List = (props: { entries: DocsEntry[] }) => {
 
 const listEntry = (entry: DocsEntry) => {
     return (
-        entry.sub !== undefined ? <li>{entry.title}<List entries={entry.sub} /></li> : <li><a href={entry.url}>{entry.title}</a></li>
+        entry.sub !== undefined ? <li>{entry.title}<List entries={entry.sub} /></li> : <li><Link href="" to={entry.path}>{entry.title}</Link></li>
     )
 }
 

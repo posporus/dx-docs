@@ -8,14 +8,20 @@ import {
     NRouter
 } from '../../deps.ts'
 
+import { store } from '../../store.ts'
+
 export class Page extends Component {
+
+    pathIds = store.use().state.pathIds
+
     listener = NRouter.Listener().use()
     async getPage () {
-        const { parseParamsFromPath } = NRouter
-        //const path = parseParamsFromPath(this.props.route.path)
-        console.log('path:', this.props.route.path)
-        await Promise
-        this.update('asdf' + new Date())
+        //const { parseParamsFromPath } = NRouter
+        const { path } = this.props.route
+        const id = this.pathIds[path]
+        console.log('id:',id)
+        const html = await this.fetchPage('./' + id)
+        this.update(html)
     }
 
     async didMount () {
@@ -24,11 +30,17 @@ export class Page extends Component {
                 this.getPage()
             }
         })
+        console.log('didMount')
         await this.getPage()
     }
 
-    render (post: string) {
-        if (post) return <div>{post}</div>
+    async fetchPage (id: string) {
+        const res = await fetch('./' + id)
+        return await res.text()
+    }
+
+    render (html: string) {
+        if (html) return <div>{html}</div>
         return <div>loading...</div>
     }
 }
